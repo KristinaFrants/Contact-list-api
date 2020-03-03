@@ -21,17 +21,33 @@ const injectContext = PassedComponent => {
 			})
 		);
 
-		useEffect(() => {
-			state.actions.loadSomeData;
-			/**
-			 * EDIT THIS!
-			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
-			 * you should do your ajax requests or fetch api requests here
-			 *
-			 * state.loadSomeData(); <---- calling this function from the flux.js actions
-			 *
-			 **/
-		}, []);
+		useEffect(
+			() => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
+					.then(function(response) {
+						if (!response.ok) {
+							throw Error(response.statusText);
+						}
+						return response.json();
+					})
+					.then(data => {
+						let { store } = state;
+						setState({ store: { ...store, contacts: data } });
+					});
+			},
+			[state]
+		);
+
+		// state.actions.loadSomeData();
+		/**
+		 * EDIT THIS!
+		 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
+		 * you should do your ajax requests or fetch api requests here
+		 *
+		 * state.loadSomeData(); <---- calling this function from the flux.js actions
+		 *
+		 **/
+		// }, []);
 
 		// the initial value for the context its not null anymore, but the current state of this component,
 		// the context will have a getStore and setStore functions available then, because they were declared
