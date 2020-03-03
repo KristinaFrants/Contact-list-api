@@ -15,7 +15,7 @@ const getState = ({ getStore, setStore, getActions }) => {
 						}
 						return response.json();
 					})
-					.then(data => setStore({ contacts: data.results }))
+					.then(data => setStore({ contacts: data }))
 					.catch(function(error) {
 						console.log("Looks like there was a problem: \n", error);
 					});
