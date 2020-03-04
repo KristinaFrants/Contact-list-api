@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
-
 export const Modal = props => {
 	const [state, setState] = useState({
 		//initialize state here
@@ -32,7 +31,11 @@ export const Modal = props => {
 						<button type="button" className="btn btn-primary">
 							Oh no!
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
+						<button
+							type="button"
+							className="btn btn-secondary"
+							data-dismiss="modal"
+							onClick={() => props.onDelete()}>
 							Do it!
 						</button>
 					</div>
@@ -48,7 +51,8 @@ export const Modal = props => {
 Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
-	show: PropTypes.bool
+	show: PropTypes.bool,
+	onDelete: PropTypes.func
 };
 
 /**

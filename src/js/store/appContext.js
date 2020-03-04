@@ -20,25 +20,32 @@ const injectContext = PassedComponent => {
 					})
 			})
 		);
+		useEffect(() => {
+			/**
+			 * EDIT THIS!
+			 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
+			 * you should do your ajax requests or fetch api requests here
+			 * state.loadSomeData(); <---- calling this function from the flux.js actions
+			 **/
+			state.actions.loadContact();
+		}, []);
 
-		useEffect(
-			() => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
-					.then(function(response) {
-						if (!response.ok) {
-							throw Error(response.statusText);
-						}
-						return response.json();
-					})
-					.then(data => {
-						let { store } = state;
-						setState({ store: { ...store, contacts: data } });
-					});
-			},
-			[state]
-		);
-
-		// state.actions.loadSomeData();
+		// useEffect(
+		// 	() => {
+		// 		fetch("https://assets.breatheco.de/apis/fake/contact/agenda/kevs_agenda")
+		// 			.then(function(response) {
+		// 				if (!response.ok) {
+		// 					throw Error(response.statusText);
+		// 				}
+		// 				return response.json();
+		// 			})
+		// 			.then(data => {
+		// 				let { store } = state;
+		// 				setState({ store: { ...store, contacts: data } });
+		// 			});
+		// 	},
+		// 	[state]
+		// );
 		/**
 		 * EDIT THIS!
 		 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime

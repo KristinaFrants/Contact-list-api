@@ -9,6 +9,7 @@ export const ContactCard = props => {
 		//initialize state here
 	});
 	const { store, actions } = useContext(Context);
+
 	return (
 		<>
 			{!store.contacts
